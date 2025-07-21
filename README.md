@@ -50,15 +50,15 @@ The solution was developed through a structured, iterative process:
 ```mermaid
 graph TD
     %% A. 数据准备阶段
-    A[加载原始数据 train.csv & test.csv] --> B[数据清洗: 移除GrLivArea异常值];
+    A[加载原始数据 train.csv and test.csv] --> B[数据清洗: 移除GrLivArea异常值];
     B --> C[准备完整训练集 X_full & y_full];
 
     %% B. 特征工程阶段 (使用子图)
     C --> FE;
     subgraph FE [高级特征工程]
-        FE1[智能填充缺失值<br>(例如: NaN -> 'NoPool')];
-        FE2[有序特征映射<br>(例如: 'Ex' -> 5, 'Gd' -> 4)];
-        FE3[类型转换<br>(例如: MSSubClass -> 类别)];
+        FE1[智能填充缺失值<br>(例如: NaN => 'None')];
+        FE2[有序特征映射<br>(例如: 'Ex' => 5, 'Gd' => 4)];
+        FE3[类型转换<br>(例如: MSSubClass => 类别)];
         FE4[创造新特征<br>(例如: TotalSF, HouseAge)];
         FE5[交互特征<br>(例如: Qual_x_TotalSF)];
         FE6[处理数值特征倾斜度<br>(Log1p变换)];
