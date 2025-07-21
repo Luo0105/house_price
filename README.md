@@ -1,5 +1,11 @@
 # House Prices - Advanced Regression Techniques (Kaggle Top 13%)
 
+[![Python 3.9+](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/downloads/)
+[![Kaggle](https://img.shields.io/badge/Kaggle-Top%2013%25-20BEFF.svg)](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques)
+[![Scikit-learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
+[![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?logo=pandas&logoColor=white)](https://pandas.pydata.org/)
+[![NumPy](https://img.shields.io/badge/numpy-%23013243.svg?logo=numpy&logoColor=white)](https://numpy.org/)
+
 This repository contains a comprehensive solution for the Kaggle competition "House Prices: Advanced Regression Techniques". The goal of this project is to predict the final sale price of homes in Ames, Iowa, based on 79 explanatory variables.
 
 This project goes beyond a simple baseline, employing a robust pipeline of advanced feature engineering, systematic model evaluation, and hyperparameter tuning to achieve a competitive score.
