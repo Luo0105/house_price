@@ -49,37 +49,37 @@ The solution was developed through a structured, iterative process:
 
 ```mermaid
 graph TD
-    %% A. 数据准备阶段
-    A["加载原始数据 train.csv and test.csv"] --> B["数据清洗: 移除GrLivArea异常值"];
-    B --> C["准备完整训练集 X_full & y_full"];
+    %% A. Data Preparation
+    A["Load Data (train.csv & test.csv)"] --> B["Clean Data (Remove Outliers)"];
+    B --> C["Prepare Full Dataset (X_full & y_log)"];
 
-    %% B. 特征工程阶段 (使用子图)
+    %% B. Feature Engineering Subgraph
     C --> FE;
-    subgraph FE [高级特征工程]
-        FE1["智能填充缺失值<br>(例如: NaN 变为 'None')"];
-        FE2["有序特征映射<br>(例如: 'Ex' 变为 5, 'Gd' 变为 4)"];
-        FE3["类型转换<br>(例如: MSSubClass 变为 类别)"];
-        FE4["创造新特征<br>(例如: TotalSF, HouseAge)"];
-        FE5["交互特征<br>(例如: Qual_x_TotalSF)"];
-        FE6["处理数值特征倾斜度<br>(Log1p变换)"];
+    subgraph FE [Advanced Feature Engineering]
+        FE1["Smart Imputation<br>(e.g., NaN => 'None')"];
+        FE2["Ordinal Mapping<br>(e.g., 'Ex' => 5)"];
+        FE3["Type Conversion<br>(e.g., MSSubClass => Category)"];
+        FE4["Feature Creation<br>(e.g., TotalSF, HouseAge)"];
+        FE5["Interaction Features<br>(e.g., Qual x TotalSF)"];
+        FE6["Skewness Transformation<br>(Log1p)"];
     end
 
-    %% C. 建模与评估阶段 (使用子图)
+    %% C. Modeling & Evaluation Subgraph
     FE --> ME;
-    subgraph ME [建模与评估]
-        ME1("开始5折交叉验证");
-        ME2{"评估多个模型<br>RF, Ridge, LGBM, XGB, CatBoost"};
-        ME3["比较CV平均分与稳定性"];
-        ME4("选出最佳单模型: CatBoost<br>CV均分: ~0.117");
+    subgraph ME [Modeling & Evaluation]
+        ME1("Start 5-Fold Cross-Validation");
+        ME2{"Evaluate Models<br>RF, Ridge, LGBM, XGB, CatBoost"};
+        ME3["Compare CV Mean & Std Dev"];
+        ME4("Select Best Model: CatBoost<br>(CV Mean: ~0.117)");
         ME1 --> ME2 --> ME3 --> ME4;
     end
     
-    %% D. 最终预测阶段
-    ME4 --> F["在100%完整训练数据上<br>重新训练最佳模型(CatBoost)"];
-    F --> G["对测试集应用<br>完全相同的特征工程"];
-    G --> H["使用最终模型进行预测"];
-    H --> I["生成提交文件 submission.csv"];
+    %% D. Final Prediction
+    ME4 --> F["Retrain Best Model<br>on 100% of Training Data"];
+    F --> G["Apply Same Feature Engineering<br>to Test Set"];
+    G --> H["Generate Predictions"];
+    H --> I["Create submission.csv"];
 
-    %% 设置样式 (可选, 美化)
+    %% Optional Styling
     style FE fill:#f9f,stroke:#333,stroke-width:2px
     style ME fill:#ccf,stroke:#333,stroke-width:2px
